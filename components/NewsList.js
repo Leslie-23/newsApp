@@ -11,11 +11,13 @@ export default function NewsList({
   articles,
   onArticlePress,
   loading = false,
+  refreshing = false,
+  onRefresh,
 }) {
-  if (loading) {
+  if (loading && !refreshing) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" color="#1e40af" />
+        <ActivityIndicator size="large" color="#34bb78" />
       </View>
     );
   }
@@ -31,12 +33,14 @@ export default function NewsList({
   return (
     <FlatList
       data={articles}
-      keyExtractor={(item) => item.url + item.publishedAt}
+      keyExtractor={(item) => item.uuid || item.url + item.publishedAt}
       renderItem={({ item }) => (
         <NewsCard article={item} onPress={() => onArticlePress(item)} />
       )}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.listContent}
+      refreshing={refreshing}
+      onRefresh={onRefresh}
     />
   );
 }

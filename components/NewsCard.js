@@ -6,12 +6,15 @@ export default function NewsCard({ article, onPress }) {
     <TouchableOpacity style={styles.card} onPress={onPress}>
       <Image
         source={{
-          uri: article.urlToImage || "https://via.placeholder.com/300x200",
+          uri: article.image_url
+            ? article.image_url
+            : "https://via.placeholder.com/300x200?text=No+Image",
         }}
         style={styles.image}
         contentFit="cover"
         transition={1000}
       />
+
       <View style={styles.content}>
         <Text style={styles.title} numberOfLines={3}>
           {article.title}
@@ -22,7 +25,14 @@ export default function NewsCard({ article, onPress }) {
         <View style={styles.footer}>
           <Text style={styles.source}>{article.source?.name}</Text>
           <Text style={styles.date}>
-            {new Date(article.publishedAt).toLocaleDateString()}
+            {new Date(article.published_at).toLocaleString("en-US", {
+              weekday: "short",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
           </Text>
         </View>
       </View>
@@ -69,7 +79,7 @@ const styles = StyleSheet.create({
   },
   source: {
     fontSize: 12,
-    color: "#1e40af",
+    color: "#34bb78",
     fontWeight: "600",
   },
   date: {
