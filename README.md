@@ -1,50 +1,321 @@
-# Welcome to your Expo app 👋
+# NewsApp - React Native News Application
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📱 Project Overview
 
-## Get started
+NewsApp is a modern, cross-platform mobile application built with React Native and Expo Router that delivers real-time news from various sources using the NewsAPI. The app features a clean, intuitive interface with four main sections for browsing, searching, and saving news articles.
 
-1. Install dependencies
+---
+
+## 🚀 Features
+
+### Core Features
+
+- **Top Headlines**: Browse latest news from multiple categories
+- **Category-based News**: Filter news by specific categories (Business, Technology, Sports, etc.)
+- **Advanced Search**: Search through news articles with intelligent suggestions
+- **Bookmarks**: Save articles for later reading (UI ready for implementation)
+- **Real-time Updates**: Pull-to-refresh functionality
+- **Responsive Design**: Optimized for both iOS and Android
+
+### Technical Features
+
+- **Expo Router**: File-based navigation system
+- **Modern UI**: Consistent design language with proper spacing and colors
+- **API Integration**: Full integration with The News API
+- **Error Handling**: Comprehensive error states and loading indicators
+- **TypeScript Ready**: Structured for easy TypeScript integration
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- **React Native** (0.81.5) - Cross-platform mobile framework
+- **Expo** (54.0.23) - Development platform
+- **Expo Router** (6.0.14) - File-based routing
+- **React Navigation** - Tab navigation
+
+### API & Services
+
+- **The News API** - News data provider
+- **Axios** - HTTP client for API requests
+
+### UI Components
+
+- **Expo Vector Icons** - Icon library
+- **Expo Image** - Optimized image handling
+- **React Native Reanimated** - Smooth animations
+
+---
+
+## 📁 Project Structure
+
+```
+newsapp/
+├── app/                    # Expo Router pages
+│   ├── _layout.js         # Root layout with tab navigation
+│   ├── index.js           # Home screen
+│   ├── categories.js      # Category-based news
+│   ├── search.js          # Search functionality
+│   └── bookmarks.js       # Saved articles
+├── components/            # Reusable components
+│   ├── NewsCard.js        # Article card component
+│   └── NewsList.js        # Articles list component
+├── services/              # API services
+│   └── newsService.js     # News API integration
+├── constants/             # App constants
+│   └── config.js          # API configuration
+├── assets/               # Static assets
+│   ├── icon.png          # App icon
+│   └── splash.png        # Splash screen
+└── app.json             # Expo configuration
+```
+
+---
+
+## 🎨 UI/UX Design
+
+### Color Palette
+
+- **Primary**: `#1e40af` (Blue)
+- **Background**: `#f8fafc` (Light gray)
+- **Text Primary**: `#1e293b` (Dark gray)
+- **Text Secondary**: `#64748b` (Medium gray)
+- **Cards**: `#ffffff` (White)
+
+### Typography
+
+- **Headers**: 28-32px, Bold
+- **Subtitles**: 16px, Regular
+- **Body**: 14-16px
+- **Captions**: 12-14px
+
+### Components
+
+- **NewsCard**: Clean card layout with image, title, description, source, and date
+- **NewsList**: Virtualized list with pull-to-refresh
+- **Category Chips**: Horizontal scrollable category filters
+- **Search Bar**: Enhanced search with suggestions and history
+
+---
+
+## 🔌 API Integration
+
+### NewsAPI Configuration
+
+```javascript
+// constants/config.js
+export const NEWS_API_KEY = "your_api_key_here";
+export const NEWS_API_BASE_URL = "https://api.thenewsapi.com/v1/news";
+```
+
+### Available Endpoints
+
+- **Top Headlines**: `/all?locale=us&language=en`
+- **Category News**: `/all?categories=technology&language=en`
+- **Search**: `/all?search=query&language=en`
+
+### Service Methods
+
+```javascript
+// services/newsService.js
+newsService.getTopHeadlines(country);
+newsService.getNewsByCategory(category, country);
+newsService.searchNews(query, options);
+```
+
+---
+
+## 📱 Screens
+
+### 1. Home Screen (`/`)
+
+- Displays top headlines from general, business, and tech categories
+- Pull-to-refresh functionality
+- Clean header with article count
+
+### 2. Categories Screen (`/categories`)
+
+- Horizontal category selector
+- Category-specific news feeds
+- Visual category indicators
+
+### 3. Search Screen (`/search`)
+
+- Advanced search with real-time suggestions
+- Search history
+- Popular topic chips
+- Results counter
+
+### 4. Bookmarks Screen (`/bookmarks`)
+
+- Saved articles interface
+- Empty state with instructions
+- Ready for bookmark functionality implementation
+
+---
+
+## 🚀 Installation & Setup
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo CLI
+- iOS Simulator or Android Studio (for development)
+- Physical device with Expo Go app (for testing)
+
+### Installation Steps
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <repository-url>
+   cd newsapp
+   ```
+
+2. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Environment Setup**
 
    ```bash
-   npx expo start
+   # Create .env file
+   echo "NEWS_API_KEY=your_api_key_here" > .env
    ```
 
-In the output, you'll find options to open the app in a
+4. **Get API Key**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   - Register at [The News API](https://www.thenewsapi.com/)
+   - Replace `your_api_key_here` in `.env`
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+5. **Start Development**
+   ```bash
+   npm start
+   ```
 
-## Get a fresh project
-
-When you're ready, run:
+### Building for Production
 
 ```bash
-npm run reset-project
+# Prebuild for specific platforms
+npx expo prebuild
+
+# Build using EAS
+npx eas build --platform android
+npx eas build --platform ios
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🔧 Configuration
 
-To learn more about developing your project with Expo, look at the following resources:
+### Environment Variables
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```env
+NEWS_API_KEY=your_newsapi_key_here
+```
 
-## Join the community
+### App Configuration (app.json)
 
-Join our community of developers creating universal apps.
+- App name: "NewsApp"
+- Bundle identifiers
+- Orientation: Portrait
+- Splash screen configuration
+- Icon assets
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 📊 API Response Handling
+
+### Article Object Structure
+
+```javascript
+{
+  uuid: "string",
+  title: "string",
+  description: "string",
+  url: "string",
+  image_url: "string",
+  source: "string",
+  published_at: "ISO_date_string"
+}
+```
+
+### Error Handling
+
+- Network request failures
+- API rate limits
+- Empty results
+- Invalid search queries
+
+---
+
+## 🎯 Future Enhancements
+
+### Planned Features
+
+- [ ] Bookmark functionality with local storage
+- [ ] Article detail screen
+- [ ] Offline reading capability
+- [ ] Push notifications for breaking news
+- [ ] Dark mode support
+- [ ] Share functionality
+- [ ] Multiple language support
+- [ ] Custom news sources selection
+
+### Technical Improvements
+
+- [ ] TypeScript migration
+- [ ] Unit and integration tests
+- [ ] Performance optimization
+- [ ] Advanced caching strategies
+- [ ] Analytics integration
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **API Key Issues**: Ensure correct API key in `.env`
+2. **Network Errors**: Check internet connection and API status
+3. **Build Failures**: Clear cache with `npm start -- --reset-cache`
+4. **Navigation Issues**: Verify Expo Router configuration
+
+### Support
+
+- Check Expo documentation
+- Review React Navigation guides
+- Consult NewsAPI documentation
+
+---
+
+## 👨‍💻 Developer
+
+Built with ❤️ using React Native and Expo
+
+**Portfolio Project** - Demonstrating modern mobile app development practices with React Native, Expo Router, and API integration.
+
+---
+
+_Last Updated: ${new Date().toLocaleDateString()}_
