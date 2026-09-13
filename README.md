@@ -318,4 +318,4 @@ Built with ❤️ using React Native and Expo
 
 ---
 
-_Last Updated: ${new Date().toLocaleDateString()}_
+_Last Updated: September 2026_
