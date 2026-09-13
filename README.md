@@ -106,7 +106,7 @@ newsapp/
 
 ```javascript
 // constants/config.js
-export const NEWS_API_KEY = "your_api_key_here";
+export const NEWS_API_KEY = process.env.EXPO_PUBLIC_NEWS_API_KEY;
 export const NEWS_API_BASE_URL = "https://api.thenewsapi.com/v1/news";
 ```
 
@@ -184,14 +184,14 @@ newsService.searchNews(query, options);
 3. **Environment Setup**
 
    ```bash
-   # Create .env file
-   echo "NEWS_API_KEY=your_api_key_here" > .env
+   # Copy the example and fill in your key
+   cp .env.example .env
    ```
 
 4. **Get API Key**
 
    - Register at [The News API](https://www.thenewsapi.com/)
-   - Replace `your_api_key_here` in `.env`
+   - Set `EXPO_PUBLIC_NEWS_API_KEY` in `.env` to your key
 
 5. **Start Development**
    ```bash
@@ -216,7 +216,7 @@ npx eas build --platform ios
 ### Environment Variables
 
 ```env
-NEWS_API_KEY=your_newsapi_key_here
+EXPO_PUBLIC_NEWS_API_KEY=your_newsapi_key_here
 ```
 
 ### App Configuration (app.json)
