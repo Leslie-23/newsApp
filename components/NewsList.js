@@ -33,7 +33,7 @@ export default function NewsList({
   return (
     <FlatList
       data={articles}
-      keyExtractor={(item) => item.uuid || item.url + item.publishedAt}
+      keyExtractor={(item) => item.uuid || item.url + item.published_at}
       renderItem={({ item }) => (
         <NewsCard article={item} onPress={() => onArticlePress(item)} />
       )}
